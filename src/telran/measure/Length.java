@@ -27,14 +27,16 @@ public class Length implements Comparable<Length> {
 		return new Length( unit.getValue() * amount / lengthUnit.getValue(), lengthUnit);
 	}
 	
-	public boolean isEquals (Object obj) {
-		//TODO
-		boolean res = false;
-		if ((Length) obj == this) {
-			res = true;
-		} else	if (obj != null &&  obj.getClass() == unit.getClass()) {
+	@Override
+	public boolean equals (Object obj) {
 		
-		Length lenght = ((Length) obj).convert(unit);
+		boolean res = false;
+		
+		if (obj == this) {
+			res = true;
+		} else	if (obj != null &&  obj.getClass() == this.getClass()) {
+		
+		Length lenght = ((Length) obj).convert(this.unit);
 		res =  (Float.compare(lenght.getAmount(), amount) == 0);
 		}
 		return res;
